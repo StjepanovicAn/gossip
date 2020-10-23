@@ -2,7 +2,7 @@ require 'faker'
 
 10.times do
 	user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, 
-		description: Faker::Quote.yoda, email: Faker::Internet.email, age: Faker::Number.within(range: 18..75),)
+		description: Faker::Quote.yoda, email: Faker::Internet.email, age: Faker::Number.within(range: 18..75), city: City.all.sample)
 end
 
 10.times do
@@ -10,7 +10,7 @@ end
 end
 
 20.times do
-	gossip = Gossip.create(title: Faker::BossaNova.song, content: Faker::Lorem.paragraph, user:user)	
+	gossip = Gossip.create(title: Faker::BossaNova.song, content: Faker::Lorem.paragraph, user:User.all.sample)	
 end
 
 10.times do
@@ -18,7 +18,7 @@ end
 end
 
 5.times do
-	private_message = private_message.create(content: Faker::Quotes::Chiquito.joke, user:sender, user:recipients)
+	private_message = PrivateMessage.create(content: Faker::Quotes::Chiquito.joke, sender: User.all.sample)
 end
 
 puts "et voilà tout est parsemé!"
